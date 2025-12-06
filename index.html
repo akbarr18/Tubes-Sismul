@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telkommerce - Realtime App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar" style="display: none;">
+        <div class="nav-brand"><i class="fas fa-shapes"></i> Telkommerce</div>
+        <ul class="nav-menu">
+            <li id="navHome" class="nav-item active"><i class="fas fa-home"></i> Beranda</li>
+            <li id="navSell" class="nav-item"><i class="fas fa-plus-circle"></i> Jual</li>
+            <li id="navChat" class="nav-item"><i class="fas fa-comment-dots"></i> Chat</li>
+            <li id="navProfile" class="nav-item"><i class="fas fa-user"></i> Akun</li>
+        </ul>
+        <button class="btn-logout" id="btnLogout">Logout</button>
+    </nav>
+
+    <!-- AUTHENTICATION -->
+    <section id="authSection" class="auth-wrapper">
+        <div class="auth-card" id="loginBox">
+            <div class="auth-header">
+                <h2>Login</h2>
+                <p>Masuk ke Telkommerce Firebase.</p>
+            </div>
+            <form id="formLogin">
+                <div class="form-group"><i class="fas fa-envelope"></i><input type="email" id="loginEmail" placeholder="Email" required></div>
+                <div class="form-group"><i class="fas fa-lock"></i><input type="password" id="loginPass" placeholder="Password" required></div>
+                <button type="submit" class="btn-primary btn-block">Masuk</button>
+            </form>
+            <div class="auth-footer"><p>Belum punya akun? <a href="#" id="linkToRegister">Daftar</a></p></div>
+        </div>
+
+        <div class="auth-card hidden" id="registerBox">
+            <div class="auth-header">
+                <h2>Daftar</h2>
+                <p>Buat akun baru.</p>
+            </div>
+            <form id="formRegister">
+                <div class="form-group"><i class="fas fa-user"></i><input type="text" id="regName" placeholder="Nama Lengkap" required></div>
+                <div class="form-group"><i class="fas fa-envelope"></i><input type="email" id="regEmail" placeholder="Email" required></div>
+                <div class="form-group"><i class="fas fa-lock"></i><input type="password" id="regPass" placeholder="Password" required></div>
+                <button type="submit" class="btn-dark btn-block">Daftar Akun</button>
+            </form>
+            <div class="auth-footer"><p>Sudah punya akun? <a href="#" id="linkToLogin">Login</a></p></div>
+        </div>
+    </section>
+
+    <!-- MAIN APP -->
+    <main id="mainApp" style="display: none;">
+        <!-- HOME -->
+        <section id="home" class="view active">
+            <div class="hero"><div class="hero-content"><h1>Telkommerce Realtime</h1><p>Data tersinkronisasi antar perangkat.</p></div></div>
+            <div class="toolbar">
+                <div class="search-wrap"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Cari barang..."></div>
+            </div>
+            <div class="product-grid" id="productContainer"></div>
+        </section>
+
+        <!-- SELL -->
+        <section id="sell" class="view">
+            <div class="container-center">
+                <div class="card-simple">
+                    <h3>Pasang Iklan</h3>
+                    <form id="formAddProduct">
+                        <div class="form-group-file"><label>Foto</label><input type="file" id="prodImg" class="input-std" accept="image/*" required></div>
+                        <input type="text" id="prodTitle" class="input-std" placeholder="Nama Barang" required>
+                        <select id="prodCat" class="input-std">
+                            <option value="Elektronik">Elektronik</option><option value="Buku">Buku</option><option value="Fashion">Fashion</option><option value="Lainnya">Lainnya</option>
+                        </select>
+                        <input type="number" id="prodPrice" class="input-std" placeholder="Harga" required>
+                        <button type="submit" class="btn-primary btn-block">Terbitkan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAT -->
+        <section id="chat" class="view">
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <div class="chat-header-small">Kontak</div>
+                    <div id="chatList" style="overflow-y: auto; height: 90%;"></div>
+                </div>
+                <div class="chat-window">
+                    <div class="window-header"><h4 id="chatHeaderName">Pilih kontak...</h4></div>
+                    <div class="chat-messages" id="chatBody"></div>
+                    <div class="chat-input-area">
+                        <input type="text" placeholder="Tulis pesan..." id="msgInput">
+                        <button id="btnSendMsg"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="profile" class="view">
+            <div class="container-center">
+                <div class="card-simple profile-card">
+                    <img src="" id="profileImg" alt="Profile">
+                    <h2 id="profileName">Loading...</h2>
+                    <p id="profileEmail" class="badge">...</p>
+                    <button id="btnLogoutProfile" class="btn-dark btn-block">Logout</button>
+                </div>
+            </div>
+            <div class="my-products-section">
+                <h3>Iklan Saya</h3>
+                <div class="product-grid" id="myProductContainer"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PENTING: type="module" agar bisa import Firebase -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
