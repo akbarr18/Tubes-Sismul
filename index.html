@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telkommerce - Realtime App</title>
+    <title>Telkommerce - Marketplace Mahasiswa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -28,10 +28,11 @@
 
     <!-- AUTHENTICATION -->
     <section id="authSection" class="auth-wrapper">
+        <!-- Login -->
         <div class="auth-card" id="loginBox">
             <div class="auth-header">
                 <h2>Login</h2>
-                <p>Masuk ke Telkommerce Firebase.</p>
+                <p>Masuk ke Telkommerce.</p>
             </div>
             <form id="formLogin">
                 <div class="form-group"><i class="fas fa-envelope"></i><input type="email" id="loginEmail" placeholder="Email" required></div>
@@ -41,6 +42,7 @@
             <div class="auth-footer"><p>Belum punya akun? <a href="#" id="linkToRegister">Daftar</a></p></div>
         </div>
 
+        <!-- Register -->
         <div class="auth-card hidden" id="registerBox">
             <div class="auth-header">
                 <h2>Daftar</h2>
@@ -60,9 +62,26 @@
     <main id="mainApp" style="display: none;">
         <!-- HOME -->
         <section id="home" class="view active">
-            <div class="hero"><div class="hero-content"><h1>Telkommerce Realtime</h1><p>Data tersinkronisasi antar perangkat.</p></div></div>
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Telkommerce Realtime</h1>
+                    <p>Jual beli aman dan cepat antar mahasiswa.</p>
+                </div>
+            </div>
             <div class="toolbar">
-                <div class="search-wrap"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Cari barang..."></div>
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <!-- PERBAIKAN: onkeyup dihapus -->
+                    <input type="text" id="searchInput" placeholder="Cari barang...">
+                </div>
+                <!-- PERBAIKAN: onchange dihapus -->
+                <select id="categoryFilter">
+                    <option value="all">Semua Kategori</option>
+                    <option value="Elektronik">Elektronik</option>
+                    <option value="Buku">Buku</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
             </div>
             <div class="product-grid" id="productContainer"></div>
         </section>
@@ -76,7 +95,10 @@
                         <div class="form-group-file"><label>Foto</label><input type="file" id="prodImg" class="input-std" accept="image/*" required></div>
                         <input type="text" id="prodTitle" class="input-std" placeholder="Nama Barang" required>
                         <select id="prodCat" class="input-std">
-                            <option value="Elektronik">Elektronik</option><option value="Buku">Buku</option><option value="Fashion">Fashion</option><option value="Lainnya">Lainnya</option>
+                            <option value="Elektronik">Elektronik</option>
+                            <option value="Buku">Buku</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Lainnya">Lainnya</option>
                         </select>
                         <input type="number" id="prodPrice" class="input-std" placeholder="Harga" required>
                         <button type="submit" class="btn-primary btn-block">Terbitkan</button>
@@ -108,7 +130,7 @@
             <div class="container-center">
                 <div class="card-simple profile-card">
                     <img src="" id="profileImg" alt="Profile">
-                    <h2 id="profileName">Loading...</h2>
+                    <h2 id="profileName">User</h2>
                     <p id="profileEmail" class="badge">...</p>
                     <button id="btnLogoutProfile" class="btn-dark btn-block">Logout</button>
                 </div>
@@ -120,7 +142,6 @@
         </section>
     </main>
 
-    <!-- PENTING: type="module" agar bisa import Firebase -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
